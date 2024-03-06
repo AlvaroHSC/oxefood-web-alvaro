@@ -1,6 +1,6 @@
 import React from "react";
 import InputMask from 'react-input-mask';
-import { Button, Container, Divider, Form, Icon } from 'semantic-ui-react';
+import { Button, Container, Divider, Form, FormTextArea, Icon } from 'semantic-ui-react';
 
 export default function FormProduto () {
 
@@ -43,13 +43,13 @@ export default function FormProduto () {
 
                             </Form.Group>
                             
-                            <Form.Group>
+                            <Form.Group widths="equal">
 
-                                <Form.Input
-                                    fluid
+                                <FormTextArea
                                     label='Descrição'
-                                    width={6}>
-                                </Form.Input>
+                                    placeholder='Informe a descrição do produto'
+                                    >
+                                </FormTextArea>
 
                             </Form.Group>
 
@@ -57,6 +57,7 @@ export default function FormProduto () {
 
                                 <Form.Input
                                     fluid
+                                    required
                                     label='Valor Unitário'
                                     width={6}>
                                 </Form.Input>
