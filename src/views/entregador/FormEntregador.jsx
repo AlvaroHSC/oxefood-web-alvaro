@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import InputMask from "react-input-mask";
 import {
@@ -19,6 +20,45 @@ const FormEntregador = () => {
     { text: "Paraíba", value: "Paraíba" },
     { text: "Rio Grande do Norte", value: "Rio Grande do Norte" },
   ]);
+
+  const [nome, setNome] = useState();
+  const [cpf, setCpf] = useState();
+  const [rg, setRg] = useState();
+  const [dataNascimento, setDataNascimento] = useState();
+  const [foneCelular, setFoneCelular] = useState();
+  const [foneFixo, setFoneFixo] = useState();
+  const [titulo, setTitulo] = useState();
+  const [codigo, setCodigo] = useState();
+  const [descricao, setDescricao] = useState();
+  const [valorUnitario, setValorUnitario] = useState();
+  const [tempoEntregaMinimo, setTempoEntregaMinimo] = useState();
+  const [tempoEntregaMaximo, setTempoEntregaMaximo] = useState();
+
+  function salvar() {
+
+    let entregadorRequest = {
+      nome: nome,
+      cpf: cpf,
+      rg: rg,
+      dataNascimento: dataNascimento,
+      foneCelular: foneCelular,
+      foneFixo: foneFixo,
+      titulo: titulo,
+      codigo: codigo,
+      descricao: descricao,
+      valorUnitario: valorUnitario,
+      tempoEntregaMinimo: tempoEntregaMinimo,
+      tempoEntregaMaximo: tempoEntregaMaximo
+    }
+
+    axios.post("http://localhost:8080/api/entregador", entregadorRequest)
+      .then((response) => {
+        console.log('Entregador cadastrado com sucesso.')
+      })
+      .catch((error) => {
+        console.log('Erro ao incluir o um entregador.')
+      })
+  }
 
   return (
     <div>
@@ -126,33 +166,34 @@ const FormEntregador = () => {
             </Form>
           </div>
 
-          <div style={{marginTop: '4%'}}>
+          <div style={{ marginTop: '4%' }}>
 
-                            <Button
-                                type="button"
-                                inverted
-                                circular
-                                icon
-                                labelPosition='left'
-                                color='orange'
-                            >
-                                <Icon name='reply' />
-                                Voltar
-                            </Button>
-                                
-                            <Button
-                                inverted
-                                circular
-                                icon
-                                labelPosition='left'
-                                color='blue'
-                                floated='right'
-                            >
-                                <Icon name='save' />
-                                Salvar
-                            </Button>
+            <Button
+              type="button"
+              inverted
+              circular
+              icon
+              labelPosition='left'
+              color='orange'
+            >
+              <Icon name='reply' />
+              Voltar
+            </Button>
 
-                        </div>
+            <Button
+              inverted
+              circular
+              icon
+              labelPosition='left'
+              color='blue'
+              floated='right'
+              onClick={() => salvar()}
+            >
+              <Icon name='save' />
+              Salvar
+            </Button>
+
+          </div>
         </Container>
       </div>
     </div>
