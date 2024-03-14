@@ -27,15 +27,17 @@ const FormEntregador = () => {
   const [dataNascimento, setDataNascimento] = useState();
   const [foneCelular, setFoneCelular] = useState();
   const [foneFixo, setFoneFixo] = useState();
-  const [titulo, setTitulo] = useState();
-  const [codigo, setCodigo] = useState();
-  const [descricao, setDescricao] = useState();
-  const [valorUnitario, setValorUnitario] = useState();
-  const [tempoEntregaMinimo, setTempoEntregaMinimo] = useState();
-  const [tempoEntregaMaximo, setTempoEntregaMaximo] = useState();
+  const [qtdEntregasRealizadas, setQtdEntregasRealizadas] = useState();
+  const [valorFrete, setValorFrete] = useState();
+  const [enderecoRua, setEnderecoRua] = useState();
+  const [enderecoBairro, setEnderecoBairro] = useState();
+  const [enderecoCidade, setEnderecoCidade] = useState();
+  const [enderecoCep, setEnderecoCep] = useState();
+  const [enderecoUf, setEnderecoUf] = useState();
+  const [enderecoComplemento, setEnderecoComplemento] = useState();
+  const [ativo, setAtivo] = useState();
 
   function salvar() {
-
     let entregadorRequest = {
       nome: nome,
       cpf: cpf,
@@ -43,21 +45,25 @@ const FormEntregador = () => {
       dataNascimento: dataNascimento,
       foneCelular: foneCelular,
       foneFixo: foneFixo,
-      titulo: titulo,
-      codigo: codigo,
-      descricao: descricao,
-      valorUnitario: valorUnitario,
-      tempoEntregaMinimo: tempoEntregaMinimo,
-      tempoEntregaMaximo: tempoEntregaMaximo
-    }
+      qtdEntregasRealizadas: qtdEntregasRealizadas,
+      valorFrete: valorFrete,
+      enderecoRua: enderecoRua,
+      enderecoBairro: enderecoBairro,
+      enderecoCidade: enderecoCidade,
+      enderecoCep: enderecoCep,
+      enderecoUf: enderecoUf,
+      enderecoComplemento: enderecoComplemento,
+      ativo: ativo,
+    };
 
-    axios.post("http://localhost:8080/api/entregador", entregadorRequest)
+    axios
+      .post("http://localhost:8080/api/entregador", entregadorRequest)
       .then((response) => {
-        console.log('Entregador cadastrado com sucesso.')
+        console.log("Entregador cadastrado com sucesso.");
       })
       .catch((error) => {
-        console.log('Erro ao incluir o um entregador.')
-      })
+        console.log("Erro ao incluir o um entregador.");
+      });
   }
 
   return (
@@ -77,13 +83,31 @@ const FormEntregador = () => {
           <div style={{ marginTop: "4%" }}>
             <Form>
               <Form.Group widths="equal">
-                <Form.Input required fluid label="Nome" maxLength="100" />
+                <Form.Input
+                  required
+                  fluid
+                  label="Nome"
+                  maxLength="100"
+                  value={nome}
+                  onChange={(e) => setNome(e.target.value)}
+                />
 
                 <Form.Input required fluid label="CPF">
-                  <InputMask required mask="999.999.999-99" />
+                  <InputMask
+                    required
+                    mask="999.999.999-99"
+                    value={cpf}
+                    onChange={(e) => setCpf(e.target.value)}
+                  />
                 </Form.Input>
 
-                <Form.Input fluid label="RG" maxLength="100" />
+                <Form.Input
+                  fluid
+                  label="RG"
+                  maxLength="100"
+                  value={rg}
+                  onChange={(e) => setRg(e.target.value)}
+                />
               </Form.Group>
 
               <Form.Group widths="equal">
@@ -92,6 +116,8 @@ const FormEntregador = () => {
                     mask="99/99/9999"
                     maskChar={null}
                     placeholder="Ex: 20/03/1985"
+                    value={dataNascimento}
+                    onChange={(e) => setDataNascimento(e.target.value)}
                   />
                 </Form.Input>
 
@@ -100,6 +126,8 @@ const FormEntregador = () => {
                     mask="(99) 9999.9999"
                     maskChar={null}
                     placeholder="(99) 9999.9999"
+                    value={foneCelular}
+                    onChange={(e) => setFoneCelular(e.target.value)}
                   />
                 </Form.Input>
 
@@ -108,6 +136,8 @@ const FormEntregador = () => {
                     mask="(99) 9999.9999"
                     maskChar={null}
                     placeholder="(99) 9999.9999"
+                    value={foneFixo}
+                    onChange={(e) => setFoneFixo(e.target.value)}
                   />
                 </Form.Input>
 
@@ -115,9 +145,17 @@ const FormEntregador = () => {
                   fluid
                   label="QTD Entregas Realizadas"
                   maxLength="100"
+                  value={qtdEntregasRealizadas}
+                  onChange={(e) => setQtdEntregasRealizadas(e.target.value)}
                 />
 
-                <Form.Input fluid label="Valor Por Frete" maxLength="100" />
+                <Form.Input
+                  fluid
+                  label="Valor Por Frete"
+                  maxLength="100"
+                  value={valorFrete}
+                  onChange={(e) => setValorFrete(e.target.value)}
+                />
               </Form.Group>
 
               <Form.Group widths="equal">
@@ -166,17 +204,16 @@ const FormEntregador = () => {
             </Form>
           </div>
 
-          <div style={{ marginTop: '4%' }}>
-
+          <div style={{ marginTop: "4%" }}>
             <Button
               type="button"
               inverted
               circular
               icon
-              labelPosition='left'
-              color='orange'
+              labelPosition="left"
+              color="orange"
             >
-              <Icon name='reply' />
+              <Icon name="reply" />
               Voltar
             </Button>
 
@@ -184,15 +221,14 @@ const FormEntregador = () => {
               inverted
               circular
               icon
-              labelPosition='left'
-              color='blue'
-              floated='right'
+              labelPosition="left"
+              color="blue"
+              floated="right"
               onClick={() => salvar()}
             >
-              <Icon name='save' />
+              <Icon name="save" />
               Salvar
             </Button>
-
           </div>
         </Container>
       </div>
