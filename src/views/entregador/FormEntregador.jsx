@@ -35,7 +35,7 @@ const FormEntregador = () => {
   const [enderecoCep, setEnderecoCep] = useState();
   const [enderecoUf, setEnderecoUf] = useState();
   const [enderecoComplemento, setEnderecoComplemento] = useState();
-  const [ativo, setAtivo] = useState();
+  const [ativo, setAtivo] = useState(0);
 
   function salvar() {
     let entregadorRequest = {
@@ -159,17 +159,47 @@ const FormEntregador = () => {
               </Form.Group>
 
               <Form.Group widths="equal">
-                <Form.Input fluid label="Rua" maxLength="100" />
+                <Form.Input
+                  fluid
+                  label="Rua"
+                  maxLength="100"
+                  value={enderecoRua}
+                  onChange={(e) => setEnderecoRua(e.target.value)}
+                />
 
-                <Form.Input fluid label="Número" maxLength="100" />
+                {/* <Form.Input
+                  fluid
+                  label="Número"
+                  maxLength="4"
+                  value={enderecoNumero}
+                  onChange={(e) => setEnderecoNumero(e.target.value)}
+                /> */}
               </Form.Group>
 
               <Form.Group widths="equal">
-                <Form.Input fluid label="Bairro" maxLength="100" />
+                <Form.Input
+                  fluid
+                  label="Bairro"
+                  maxLength="100"
+                  value={enderecoBairro}
+                  onChange={(e) => setEnderecoBairro(e.target.value)}
+                />
 
-                <Form.Input fluid label="Cidade" maxLength="100" />
+                <Form.Input
+                  fluid
+                  label="Cidade"
+                  maxLength="100"
+                  value={enderecoCidade}
+                  onChange={(e) => setEnderecoCidade(e.target.value)}
+                />
 
-                <Form.Input fluid label="CEP" maxLength="100" />
+                <Form.Input
+                  fluid
+                  label="CEP"
+                  maxLength="100"
+                  value={enderecoCep}
+                  onChange={(e) => setEnderecoCep(e.target.value)}
+                />
               </Form.Group>
 
               <Form.Group widths="equal">
@@ -178,27 +208,35 @@ const FormEntregador = () => {
                   label="UF"
                   options={estados}
                   placeholder="Selecione"
+                  value={enderecoUf}
+                  onChange={(e) => setEnderecoUf(e.target.value)}
                 />
               </Form.Group>
 
               <Form.Group widths="equal">
-                <Form.Input fluid label="Complemento" maxLength="100" />
+                <Form.Input
+                  fluid
+                  label="Complemento"
+                  maxLength="100"
+                  value={enderecoComplemento}
+                  onChange={(e) => setEnderecoComplemento(e.target.value)}
+                />
               </Form.Group>
 
               <Form.Group inline>
                 <label>Ativo</label>
                 <FormRadio
                   label="Sim"
-                  value="sim"
-                  checked={options == "sim"}
-                  onChange={() => setOptions("sim")}
+                  value={1}
+                  checked={ativo == 1}
+                  onChange={() => setAtivo(1)}
                 />
 
                 <FormRadio
                   label="Não"
-                  value="nao"
-                  checked={options == "nao"}
-                  onChange={() => setOptions("nao")}
+                  value={0}
+                  checked={ativo == 0}
+                  onChange={() => setAtivo(0)}
                 />
               </Form.Group>
             </Form>
