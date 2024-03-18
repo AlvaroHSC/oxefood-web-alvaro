@@ -11,6 +11,7 @@ import {
   Icon,
   Input,
 } from "semantic-ui-react";
+import MenuSistema from "../../MenuSistema";
 
 const FormEntregador = () => {
   const [options, setOptions] = useState("");
@@ -35,7 +36,7 @@ const FormEntregador = () => {
   const [enderecoCep, setEnderecoCep] = useState();
   const [enderecoUf, setEnderecoUf] = useState();
   const [enderecoComplemento, setEnderecoComplemento] = useState();
-  const [ativo, setAtivo] = useState(0);
+  const [ativo, setAtivo] = useState(false);
 
   function salvar() {
     let entregadorRequest = {
@@ -68,6 +69,9 @@ const FormEntregador = () => {
 
   return (
     <div>
+
+      <MenuSistema />
+
       <div style={{ marginTop: "3%" }}>
         <Container textAlign="justified">
           <h2>
@@ -227,16 +231,16 @@ const FormEntregador = () => {
                 <label>Ativo</label>
                 <FormRadio
                   label="Sim"
-                  value={1}
-                  checked={ativo == 1}
-                  onChange={() => setAtivo(1)}
+                  value={true}
+                  checked={ativo == true}
+                  onChange={() => setAtivo(true)}
                 />
 
                 <FormRadio
                   label="Não"
-                  value={0}
-                  checked={ativo == 0}
-                  onChange={() => setAtivo(0)}
+                  value={false}
+                  checked={ativo == false}
+                  onChange={() => setAtivo(false)}
                 />
               </Form.Group>
             </Form>
