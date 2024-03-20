@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import InputMask from 'react-input-mask';
+import { Link } from "react-router-dom";
 import { Button, Container, Divider, Form, FormTextArea, Icon } from 'semantic-ui-react';
 import MenuSistema from "../../MenuSistema";
 
@@ -37,7 +37,7 @@ export default function FormProduto() {
     return (
 
         <div>
-                  <MenuSistema />
+            <MenuSistema />
 
             <div style={{ marginTop: '3%' }}>
 
@@ -58,23 +58,21 @@ export default function FormProduto() {
                                     fluid
                                     label='Título'
                                     maxLength="100"
+                                    placeholder="Informe o título do produto" 
                                     value={titulo}
                                     onChange={e => setTitulo(e.target.value)}
                                 >
-                                    <InputMask
-                                        placeholder="Informe o título do produto" />
                                 </Form.Input>
 
                                 <Form.Input
                                     required
                                     fluid
                                     label='Código do Produto'
+                                    placeholder="Informe o código do produto"
                                     value={codigo}
                                     onChange={e => setCodigo(e.target.value)}
                                 >
-                                    <InputMask
-                                        placeholder="Informe o código do produto"
-                                    />
+                                   
                                 </Form.Input>
 
                             </Form.Group>
@@ -108,22 +106,20 @@ export default function FormProduto() {
                                     label='Tempo de Entrega'
                                     width={6}
                                     value={tempoEntregaMinimo}
+                                    placeholder="30"
                                     onChange={e => setTempoEntregaMinimo(e.target.value)}>
-                                    <InputMask
-                                        placeholder="30"
-                                    />
+                                   
                                 </Form.Input>
 
                                 <Form.Input
                                     fluid
                                     label='Tempo de Entrega Máximo em Minutos'
                                     width={8}
+                                    placeholder="40"
                                     value={tempoEntregaMaximo}
                                     onChange={e => setTempoEntregaMaximo(e.target.value)}
                                 >
-                                    <InputMask
-                                        placeholder="40"
-                                    />
+                                    
                                 </Form.Input>
 
                             </Form.Group>
@@ -141,7 +137,7 @@ export default function FormProduto() {
                                 color='orange'
                             >
                                 <Icon name='reply' />
-                                Listar
+                                <Link to={'/list-produto'}>Listar</Link>
                             </Button>
 
                             <Button

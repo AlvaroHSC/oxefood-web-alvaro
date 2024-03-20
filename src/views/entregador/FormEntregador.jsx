@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import InputMask from "react-input-mask";
+import { Link } from "react-router-dom";
 import {
   Button,
   Container,
@@ -8,8 +9,7 @@ import {
   Form,
   FormRadio,
   FormSelect,
-  Icon,
-  Input,
+  Icon
 } from "semantic-ui-react";
 import MenuSistema from "../../MenuSistema";
 
@@ -256,7 +256,7 @@ const FormEntregador = () => {
               color="orange"
             >
               <Icon name="reply" />
-              Voltar
+              <Link to={'/list-entregador'}>Voltar</Link>
             </Button>
 
             <Button
