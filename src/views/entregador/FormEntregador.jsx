@@ -9,7 +9,7 @@ import {
   Form,
   FormRadio,
   FormSelect,
-  Icon
+  Icon,
 } from "semantic-ui-react";
 import MenuSistema from "../../MenuSistema";
 
@@ -37,6 +37,8 @@ const FormEntregador = () => {
   const [enderecoUf, setEnderecoUf] = useState();
   const [enderecoComplemento, setEnderecoComplemento] = useState();
   const [ativo, setAtivo] = useState(false);
+  
+  const [idEntregador, setIdEntregador] = useState();
 
   function salvar() {
     let entregadorRequest = {
@@ -57,19 +59,33 @@ const FormEntregador = () => {
       ativo: ativo,
     };
 
-    axios
-      .post("http://localhost:8080/api/entregador", entregadorRequest)
-      .then((response) => {
-        console.log("Entregador cadastrado com sucesso.");
-      })
-      .catch((error) => {
-        console.log("Erro ao incluir o um entregador.");
-      });
+    if (idEntregador != null) {
+      //Alteração:
+
+      axios
+        .put("http://localhost:8080/api/entregador/" + idEntregador, entregadorRequest)
+        .then((response) => {
+          console.log("Entregador alterado com sucesso.");
+        })
+        .catch((error) => {
+          console.log("Erro ao alterar um entregador.");
+        });
+    } else {
+      //Cadastro:
+
+      axios
+        .post("http://localhost:8080/api/entregador", entregadorRequest)
+        .then((response) => {
+          console.log("Entregador cadastrado com sucesso.");
+        })
+        .catch((error) => {
+          console.log("Erro ao incluir o um entregador.");
+        });
+    }
   }
 
   return (
     <div>
-
       <MenuSistema />
 
       <div style={{ marginTop: "3%" }}>
@@ -256,7 +272,7 @@ const FormEntregador = () => {
               color="orange"
             >
               <Icon name="reply" />
-              <Link to={'/list-entregador'}>Voltar</Link>
+              <Link to={"/list-entregador"}>Voltar</Link>
             </Button>
 
             <Button
