@@ -1,7 +1,7 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import InputMask from "react-input-mask";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   Button,
   Container,
@@ -39,6 +39,34 @@ const FormEntregador = () => {
   const [ativo, setAtivo] = useState(false);
   
   const [idEntregador, setIdEntregador] = useState();
+  const { state } = useLocation();
+
+  useEffect(() => {
+    console.log('first')
+    
+    if (state != null && state.id != null) {
+      axios
+        .get("http://localhost:8080/api/entregador/" + state.id)
+        .then((response) => {
+          setIdEntregador(response.data.id);
+          setNome(response.data.nome);
+          setCpf(response.data.cpf);
+          setRg(response.data.rg);
+          setDataNascimento(response.data.dataNascimento);
+          setFoneCelular(response.data.foneCelular);
+          setFoneFixo(response.data.foneFixo);
+          setQtdEntregasRealizadas(response.data.qtdEntregasRealizadas);
+          setValorFrete(response.data.valorFrete);
+          setEnderecoRua(response.data.enderecoRua);
+          setEnderecoBairro(response.data.enderecoBairro);
+          setEnderecoCidade(response.data.enderecoCidade);
+          setEnderecoCep(response.data.enderecoCep);
+          setEnderecoUf(response.data.enderecoUf);
+          setEnderecoComplemento(response.data.enderecoComplemento);
+          setAtivo(response.data.ativo);
+        });
+    }
+  }, [state]);
 
   function salvar() {
     let entregadorRequest = {

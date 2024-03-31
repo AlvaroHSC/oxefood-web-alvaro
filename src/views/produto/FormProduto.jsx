@@ -1,6 +1,6 @@
 import axios from "axios";
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import {
   Button,
   Container,
@@ -20,6 +20,23 @@ export default function FormProduto() {
   const [tempoEntregaMaximo, setTempoEntregaMaximo] = useState();
   
   const [idProduto, setIdProduto] = useState();
+  const { state } = useLocation();
+
+  useEffect(() => {
+    
+    if (state != null && state.id != null) {
+      axios
+        .get("http://localhost:8080/api/produto/" + state.id)
+        .then((response) => {
+          setIdProduto(response.data.id);
+          setTitulo(response.data.titulo);
+          setCodigo(response.data.codigo);
+          setDescricao(response.data.descricao);
+          setTempoEntregaMinimo(response.data.tempoEntregaMinimo);
+          setTempoEntregaMaximo(response.data.tempoEntregaMaximo);
+        });
+    }
+  }, [state]);
 
   function salvar() {
     let produtoRequest = {
