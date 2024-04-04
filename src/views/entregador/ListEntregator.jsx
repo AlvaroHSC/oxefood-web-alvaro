@@ -120,6 +120,7 @@ export default function ListEntregador() {
                         circular
                         color="red"
                         title="Clique aqui para remover este entregador"
+                        onClick={e => confirmaRemover(entregador.id)}
                         icon
                       >
                         <Icon name="trash" />

@@ -112,6 +112,7 @@ export default function ListProduto() {
                         circular
                         color="red"
                         title="Clique aqui para remover este produto"
+                        onClick={e => confirmaRemover(produto.id)}
                         icon
                       >
                         <Icon name="trash" />
