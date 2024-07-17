@@ -108,7 +108,7 @@ export default function ListCategoriaProduto() {
                         icon
                       >
                         <Link
-                          to="/form-promocao"
+                          to="/form-categoriaproduto"
                           state={{ id: categoriaProduto.id }}
                           style={{ color: "green" }}
                         >
