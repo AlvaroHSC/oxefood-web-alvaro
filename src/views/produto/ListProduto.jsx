@@ -67,8 +67,9 @@ export default function ListProduto() {
             <Table color="orange" sortable celled>
               <Table.Header>
                 <Table.Row>
-                  <Table.HeaderCell>Título</Table.HeaderCell>
                   <Table.HeaderCell>Código</Table.HeaderCell>
+                  <Table.HeaderCell>Categoria</Table.HeaderCell>
+                  <Table.HeaderCell>Título</Table.HeaderCell>
                   <Table.HeaderCell>Valor Unitário</Table.HeaderCell>
                   <Table.HeaderCell>Tempo Entrega Mínima</Table.HeaderCell>
                   <Table.HeaderCell>Tempo Entrega Máxima</Table.HeaderCell>
@@ -79,6 +80,7 @@ export default function ListProduto() {
               <Table.Body>
                 {lista.map((produto) => (
                   <Table.Row key={produto.id}>
+                    <Table.Cell>{produto.categoria.descricao}</Table.Cell>
                     <Table.Cell>{produto.titulo || "Não informado"}</Table.Cell>
                     <Table.Cell>{produto.codigo || "Não informado"}</Table.Cell>
                     <Table.Cell>

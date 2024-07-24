@@ -52,7 +52,6 @@ class MenuSistema extends React.Component {
             as={Link}
             to="/list-promocao"
           />
-<<<<<<< HEAD
 
           <Menu.Item
             name="categoriaproduto"
@@ -61,8 +60,6 @@ class MenuSistema extends React.Component {
             as={Link}
             to="/list-categoriaproduto"
           />
-=======
->>>>>>> cc029642b0b067d7db7a1e985173f52c8a94f462
         </Menu>
       </>
     );

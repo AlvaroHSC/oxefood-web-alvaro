@@ -12,18 +12,19 @@ import {
 import MenuSistema from "../../MenuSistema";
 
 export default function FormProduto() {
+  const { state } = useLocation();
+
+  const [idProduto, setIdProduto] = useState();
   const [titulo, setTitulo] = useState();
   const [codigo, setCodigo] = useState();
   const [descricao, setDescricao] = useState();
   const [valorUnitario, setValorUnitario] = useState();
   const [tempoEntregaMinimo, setTempoEntregaMinimo] = useState();
   const [tempoEntregaMaximo, setTempoEntregaMaximo] = useState();
-  
-  const [idProduto, setIdProduto] = useState();
-  const { state } = useLocation();
+  const [idCategoria, setIdCategoria] = useState();
+  const [listaCategoria, setListaCategoria] = useState();
 
   useEffect(() => {
-    
     if (state != null && state.id != null) {
       axios
         .get("http://localhost:8080/api/produto/" + state.id)
@@ -34,12 +35,21 @@ export default function FormProduto() {
           setDescricao(response.data.descricao);
           setTempoEntregaMinimo(response.data.tempoEntregaMinimo);
           setTempoEntregaMaximo(response.data.tempoEntregaMaximo);
+          setIdCategoria(response.data.categoria.id)
         });
     }
+
+    axios.get("http://localhost:8080/api/categoriaproduto")
+    .then((response) => {
+        const dropDownCategorias = response.data.map(c => ({ text: c.descricao, value: c.id }));
+        setListaCategoria(dropDownCategorias);
+    })
+
   }, [state]);
 
   function salvar() {
     let produtoRequest = {
+      idCategoria: idCategoria,
       titulo: titulo,
       codigo: codigo,
       descricao: descricao,
@@ -112,6 +122,21 @@ export default function FormProduto() {
                   value={codigo}
                   onChange={(e) => setCodigo(e.target.value)}
                 ></Form.Input>
+              </Form.Group>
+
+              <Form.Group widths="equal">
+                <Form.Select
+                  required
+                  fluid
+                  tabIndex="3"
+                  placeholder="Selecione"
+                  label="Categoria"
+                  options={listaCategoria}
+                  value={idCategoria}
+                  onChange={(e, { value }) => {
+                    setIdCategoria(value);
+                  }}
+                />
               </Form.Group>
 
               <Form.Group widths="equal">

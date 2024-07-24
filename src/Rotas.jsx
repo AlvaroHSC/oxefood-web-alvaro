@@ -21,18 +21,13 @@ function Rotas() {
         <Route path='list-produto' element={<ListProduto/>}/>
         <Route path='list-entregador' element={<ListEntregador/>}/>
         <Route path='list-promocao' element={<ListPromocao/>}/>
-<<<<<<< HEAD
         <Route path='list-categoriaproduto' element={<ListCategoriaProduto/>}/>
-=======
->>>>>>> cc029642b0b067d7db7a1e985173f52c8a94f462
+
         <Route path='form-cliente' element={<FormCliente/>}/>
         <Route path='form-produto' element={<FormProduto/>}/>
         <Route path='form-entregador' element={<FormEntregador/>}/>
         <Route path='form-promocao' element={<FormPromocao/>}/>
-<<<<<<< HEAD
         <Route path='form-categoriaproduto' element={<FormCategoriaProduto/>}/>
-=======
->>>>>>> cc029642b0b067d7db7a1e985173f52c8a94f462
       </Routes>
     </>
   );
