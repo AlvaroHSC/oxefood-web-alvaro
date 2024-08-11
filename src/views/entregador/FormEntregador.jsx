@@ -12,6 +12,7 @@ import {
   Icon,
 } from "semantic-ui-react";
 import MenuSistema from "../../MenuSistema";
+import { notifyError, notifySuccess } from "../util/Util";
 
 const FormEntregador = () => {
   const [options, setOptions] = useState("");
@@ -93,10 +94,16 @@ const FormEntregador = () => {
       axios
         .put("http://localhost:8080/api/entregador/" + idEntregador, entregadorRequest)
         .then((response) => {
-          console.log("Entregador alterado com sucesso.");
+          notifySuccess('Entregador alterado com sucesso.')
         })
         .catch((error) => {
-          console.log("Erro ao alterar um entregador.");
+          if (error.response.data.errors != undefined) {
+            for (let i = 0; i < error.response.data.errors.length; i++) {
+              notifyError(error.response.data.errors[i].defaultMessage);
+            }
+          } else {
+            notifyError(error.response.data.message);
+          }
         });
     } else {
       //Cadastro:
@@ -104,10 +111,16 @@ const FormEntregador = () => {
       axios
         .post("http://localhost:8080/api/entregador", entregadorRequest)
         .then((response) => {
-          console.log("Entregador cadastrado com sucesso.");
+          notifySuccess('Emtregador alterado com sucesso.')
         })
         .catch((error) => {
-          console.log("Erro ao incluir o um entregador.");
+          if (error.response.data.errors != undefined) {
+            for (let i = 0; i < error.response.data.errors.length; i++) {
+              notifyError(error.response.data.errors[i].defaultMessage);
+            }
+          } else {
+            notifyError(error.response.data.message);
+          }
         });
     }
   }
