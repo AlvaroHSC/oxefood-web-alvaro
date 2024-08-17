@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Menu } from "semantic-ui-react";
+import { logout } from './views/util/AuthenticationService';
 
 class MenuSistema extends React.Component {
   state = {
@@ -60,6 +61,15 @@ class MenuSistema extends React.Component {
             as={Link}
             to="/list-categoriaproduto"
           />
+
+          <Menu.Item
+            className='navbar__item--mobile'
+            onClick={logout}
+            content='Sair'
+            as={Link}
+            to='/'
+          />
+
         </Menu>
       </>
     );
